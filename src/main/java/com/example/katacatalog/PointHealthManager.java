@@ -7,10 +7,13 @@ public class PointHealthManager {
         if (attacker.equals(target)) {
             throw new RuntimeException("Cannot attack itself");
         }
+        if (attacker.getRange() >= (Math.abs(attacker.getPosition() - target.getPosition()))) {
+            throw new RuntimeException("Cannot stay into range");
+        }
         if ((target.getLevel() - attacker.getLevel() > 5)) {
             target.attack(pointDamage / 2);
         } else {
-            target.attack(pointDamage * 2);
+            target.attack((float) (pointDamage * 1.5));
         }
     }
 
