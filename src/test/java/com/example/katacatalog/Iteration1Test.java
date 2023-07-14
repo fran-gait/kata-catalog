@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CharacterTest {
+class Iteration1Test {
 
     @Test
     void createNewCharacter() {
@@ -22,7 +22,7 @@ class CharacterTest {
     void toDamageWhenHurtNotExceedsCurrentHealth() {
         Character character = new Character();
 
-        character.toDamage(50);
+        character.attack(50);
         assertEquals(950, character.getHealth());
         assertTrue(character.isLife());
     }
@@ -31,7 +31,7 @@ class CharacterTest {
     void toDamageWhenHurtEqualsCurrentHealth() {
         Character character = new Character();
 
-        character.toDamage(1000);
+        character.attack(1000);
         assertEquals(0, character.getHealth());
         assertFalse(character.isLife());
     }
@@ -40,7 +40,7 @@ class CharacterTest {
     void toDamageWhenHurtExceedsCurrentHealth() {
         Character character = new Character();
 
-        character.toDamage(1001);
+        character.attack(1001);
         assertEquals(0, character.getHealth());
         assertFalse(character.isLife());
     }
@@ -48,15 +48,15 @@ class CharacterTest {
     @Test
     void toHealWhenCharacterIsDie() {
         Character character = new Character();
-        character.toDamage(1000);
+        character.attack(1000);
 
-        assertThrows(RuntimeException.class, () -> character.toHeal(10));
+        assertThrows(RuntimeException.class, () -> character.heal(10));
     }
 
     @Test
     void toHealWhenCharacterHealthIsMore1000() {
         Character character = new Character();
-        character.toHeal(10);
+        character.heal(10);
 
         assertEquals(1000, character.getHealth());
     }
@@ -64,10 +64,9 @@ class CharacterTest {
     @Test
     void toHealWhenCharacterHealthIsLess1000() {
         Character character = new Character();
-        character.toDamage(500);
-        character.toHeal(50);
+        character.attack(500);
+        character.heal(50);
 
         assertEquals(550, character.getHealth());
     }
-
 }

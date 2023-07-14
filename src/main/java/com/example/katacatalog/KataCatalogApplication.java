@@ -10,10 +10,10 @@ public class KataCatalogApplication {
         Character pepe= new Character();
         Character moni= new Character();
 
-        pepe.toDamage(500);
-        moni.toDamage(500);
+        pepe.attack(500);
+        moni.attack(500);
 
-        pepe.toHeal(600);
+        pepe.heal(600);
 
         System.out.println(pepe);
         System.out.println(moni);
