@@ -9,7 +9,7 @@ class Iteration2Test {
 
     @Test
     void characterCannotAttackItself() {
-        Character player1 = new Character();
+        MeleeCharacter player1 = new MeleeCharacter(2);
 
         PointHealthManager pointHealthManager = new PointHealthManager();
 
@@ -18,19 +18,19 @@ class Iteration2Test {
 
     @Test
     void characterCanAttackOther() {
-        Character attacker = new Character();
-        Character target = new Character();
+        MeleeCharacter attacker = new MeleeCharacter(2);
+        MeleeCharacter target = new MeleeCharacter(2);
 
         PointHealthManager pointHealthManager = new PointHealthManager();
         pointHealthManager.attack(attacker, target, 100);
 
         assertEquals(1000, attacker.getHealth());
-        assertEquals(800, target.getHealth());
+        assertEquals(850, target.getHealth());
     }
 
     @Test
     void characterCanHealItself() {
-        Character character = new Character();
+        MeleeCharacter character = new MeleeCharacter(2);
         character.attack(100);
 
         PointHealthManager pointHealthManager = new PointHealthManager();
@@ -41,8 +41,8 @@ class Iteration2Test {
 
     @Test
     void characterCannotHealOther() {
-        Character healer = new Character();
-        Character target = new Character();
+        MeleeCharacter healer = new MeleeCharacter(2);
+        MeleeCharacter target = new MeleeCharacter(2);
         target.attack(100);
 
         PointHealthManager pointHealthManager = new PointHealthManager();
@@ -51,8 +51,8 @@ class Iteration2Test {
 
     @Test
     void attackerWhenTargetLevelMoreAbove() {
-        Character attacker = new Character();
-        Character target = new Character();
+        MeleeCharacter attacker = new MeleeCharacter(2);
+        MeleeCharacter target = new MeleeCharacter(2);
         target.setLevel(7);
 
         PointHealthManager pointHealthManager = new PointHealthManager();
@@ -63,13 +63,13 @@ class Iteration2Test {
 
     @Test
     void attackerWhenTargetLevelBelowAbove() {
-        Character attacker = new Character();
-        Character target = new Character();
-        target.setLevel(7);
+        MeleeCharacter attacker = new MeleeCharacter(2);
+        MeleeCharacter target = new MeleeCharacter(2);
+        attacker.setLevel(7);
 
         PointHealthManager pointHealthManager = new PointHealthManager();
         pointHealthManager.attack(attacker, target, 2);
 
-        assertEquals(999, target.getHealth());
+        assertEquals(997, target.getHealth());
     }
 }

@@ -7,8 +7,8 @@ public class KataCatalogApplication {
 
     public static void main(String[] args) {
 
-        Character pepe= new Character();
-        Character moni= new Character();
+        MeleeCharacter pepe= new MeleeCharacter(2);
+        MeleeCharacter moni= new MeleeCharacter(10);
 
         pepe.attack(500);
         moni.attack(500);

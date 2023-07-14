@@ -11,7 +11,7 @@ class Iteration1Test {
 
     @Test
     void createNewCharacter() {
-        Character character = new Character();
+        MeleeCharacter character = new MeleeCharacter(2);
 
         assertEquals(1000, character.getHealth());
         assertEquals(1, character.getLevel());
@@ -20,7 +20,7 @@ class Iteration1Test {
 
     @Test
     void toDamageWhenHurtNotExceedsCurrentHealth() {
-        Character character = new Character();
+        MeleeCharacter character = new MeleeCharacter(2);
 
         character.attack(50);
         assertEquals(950, character.getHealth());
@@ -29,7 +29,7 @@ class Iteration1Test {
 
     @Test
     void toDamageWhenHurtEqualsCurrentHealth() {
-        Character character = new Character();
+        MeleeCharacter character = new MeleeCharacter(2);
 
         character.attack(1000);
         assertEquals(0, character.getHealth());
@@ -38,7 +38,7 @@ class Iteration1Test {
 
     @Test
     void toDamageWhenHurtExceedsCurrentHealth() {
-        Character character = new Character();
+        MeleeCharacter character = new MeleeCharacter(2);
 
         character.attack(1001);
         assertEquals(0, character.getHealth());
@@ -47,7 +47,7 @@ class Iteration1Test {
 
     @Test
     void toHealWhenCharacterIsDie() {
-        Character character = new Character();
+        MeleeCharacter character = new MeleeCharacter(2);
         character.attack(1000);
 
         assertThrows(RuntimeException.class, () -> character.heal(10));
@@ -55,7 +55,7 @@ class Iteration1Test {
 
     @Test
     void toHealWhenCharacterHealthIsMore1000() {
-        Character character = new Character();
+        MeleeCharacter character = new MeleeCharacter(2);
         character.heal(10);
 
         assertEquals(1000, character.getHealth());
@@ -63,7 +63,7 @@ class Iteration1Test {
 
     @Test
     void toHealWhenCharacterHealthIsLess1000() {
-        Character character = new Character();
+        MeleeCharacter character = new MeleeCharacter(2);
         character.attack(500);
         character.heal(50);
 
